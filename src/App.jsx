@@ -92,8 +92,8 @@ class App extends Component {
   _renderResult() {
     return this.state.user_repo_result.map((repo, index) => {
       return (
-        <div className="resultItemContainer">
-          <span className="resultItem" key={index}>{repo.name}</span>
+        <div className="resultItemContainer" key={index}>
+          {highlightText(repo.name, this.state.search_repo_key)}
         </div>
       )
     })
@@ -130,4 +130,15 @@ class App extends Component {
     );
   }
 }
+
+function highlightText(text, keyword) {
+  let tokens = text.split(new RegExp(`(${keyword})`, 'gi'));
+  return <span className="resultItem"> {tokens.map((char, i) =>
+    <span key={i} className={char.toUpperCase() === keyword.toUpperCase() ? 'highlightedText' : null}>
+      {char}
+    </span>)
+  } </span>;
+}
+
 export default App;
+

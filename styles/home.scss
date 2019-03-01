@@ -21,8 +21,7 @@
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #efefef;
-  padding-bottom: 1rem;
-}
+  padding-bottom: 1rem; }
 
 .resultPanel {
   display: flex;
@@ -39,8 +38,7 @@ input[type=text] {
   padding: 0.4rem;
   width: 80%;
   max-width: 270px;
-  border-radius: 2px;
-}
+  border-radius: 2px; }
 
 button {
   margin-right: 0.8rem;
@@ -57,3 +55,7 @@ button {
 
 #mainClearBtn, #resultClearBtn {
   color: #8f3228; }
+
+.highlightedText{
+  background-color: #FFFF00;
+}
