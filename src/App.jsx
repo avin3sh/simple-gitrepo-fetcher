@@ -73,7 +73,7 @@ class App extends Component {
       )
 
       this.setState({
-        search_repo_result: filteredRepos
+        user_repo_result: filteredRepos
       })
     })
   }
@@ -120,7 +120,12 @@ class App extends Component {
 
           <div className="searchResult">
             <div className="resultPanel">
-              {this._renderResult(this.state.user_repo_result)}
+              {
+                this.state.user_repo_result.map((repo, index) => {
+                  return <span className="resultItem" key={index}>{repo.name}</span>;
+                })
+
+              }
             </div>
           </div>
         </div>
