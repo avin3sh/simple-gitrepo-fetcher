@@ -21,7 +21,7 @@ class App extends Component {
       user_repo_result: []
     }
 
-    this.handleResult = this.handleResult.bind(this);
+    this._renderResult = this._renderResult.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this._makeRequest = this._makeRequest.bind(this);
     this._clearRepo = this._clearRepo.bind(this);
@@ -87,9 +87,9 @@ class App extends Component {
   }
 
 
-  handleResult() {
+  _renderResult(dataArr) {
 
-    return this.state.user_repo_result.map((repo, index) => {
+    return dataArr.map((repo, index) => {
       return (
         <span className="resultItem" key={index}>{repo.name}</span>
       )
@@ -120,7 +120,7 @@ class App extends Component {
 
           <div className="searchResult">
             <div className="resultPanel">
-              {this.handleResult()}
+              {this._renderResult(this.state.user_repo_result)}
             </div>
           </div>
         </div>
