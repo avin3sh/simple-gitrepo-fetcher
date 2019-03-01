@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex:1;
+    flex-direction: column;
+}
+
+.searchbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.searchRepoContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .filterbar{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .resultPanel{
+    display: flex;
+    flex-direction: column;
+  }
