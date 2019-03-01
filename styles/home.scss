@@ -1,3 +1,61 @@
-h1 {
-  color: tomato;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  flex-direction: column; }
+
+.gitApp {
+  border: 1px solid #f3f3f3;
+  padding: 2rem;
+  width: 60%;
+  max-width: 450px; }
+
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; }
+
+.filterbar {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 1rem; }
+
+.resultPanel {
+  display: flex;
+  flex-direction: column; }
+
+.resultItemContainer {
+  margin-top: 7px;
+  padding: 7px;
+  border-bottom: 1px solid #f3f3f3; }
+
+input[type=text] {
+  margin-right: 0.8rem;
+  border: 1px solid #efefef;
+  padding: 0.4rem;
+  width: 80%;
+  max-width: 270px;
+  border-radius: 2px; }
+
+button {
+  margin-right: 0.8rem;
+  border: 1px solid #f3f3f3;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 5px; }
+
+#mainSearchBtn {
+  background-color: #8abf56;
+  color: #ffffff;
+  border: 1px solid #f3f3f3;
+  font-weight: bold; }
+
+#mainClearBtn, #resultClearBtn {
+  color: #8f3228; }
+
+.highlightedText{
+  background-color: #FFFF00;
 }

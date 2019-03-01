@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 
-const sampleResult = [
-  'Item1',
-  'item2',
-  'item3'
-];
-
 const GIT_BASE_API_URL = "https://api.github.com/users/";
 const GIT_REQUEST_APPENDER = "/repos";
 
@@ -21,11 +15,12 @@ class App extends Component {
       user_repo_result: []
     }
 
-    this.handleResult = this.handleResult.bind(this);
+    this._renderResult = this._renderResult.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this._makeRequest = this._makeRequest.bind(this);
     this._clearRepo = this._clearRepo.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
+    this._clearResult = this._clearResult.bind(this);
   }
 
 
@@ -62,6 +57,13 @@ class App extends Component {
     })
   }
 
+  _clearResult() {
+    this.setState({
+      search_repo_key: '',
+      user_repo_result: this.state.user_result,
+    })
+  }
+
   handleFilter(e) {
 
     this.setState({
@@ -73,7 +75,7 @@ class App extends Component {
       )
 
       this.setState({
-        search_repo_result: filteredRepos
+        user_repo_result: filteredRepos
       })
     })
   }
@@ -87,11 +89,12 @@ class App extends Component {
   }
 
 
-  handleResult() {
-
+  _renderResult() {
     return this.state.user_repo_result.map((repo, index) => {
       return (
-        <span className="resultItem" key={index}>{repo.name}</span>
+        <div className="resultItemContainer" key={index}>
+          {highlightText(repo.name, this.state.search_repo_key)}
+        </div>
       )
     })
   }
@@ -106,21 +109,20 @@ class App extends Component {
 
           <div className="searchbar">
             <input type="text" value={this.state.search_user} name="search_user" onChange={this.handleInput} />
-            <button onClick={this._makeRequest}>Go</button>
-            <button onClick={this._clearRepo}>Clear</button>
+            <button onClick={this._makeRequest} id="mainSearchBtn">Go</button>
+            <button onClick={this._clearRepo} id="mainClearBtn" disabled={this.state.user_result.length > 0 ? true : false}>Clear</button>
           </div>
 
           <div className="filterbar">
-            <div className="searchRepoContainer">
-              <input type="text" value={this.state.search_repo_key} name="search_repo_key" onChange={this.handleFilter} />
-              <button onClick={this.handleFilter}>Test</button>
-            </div>
-            <button>clear</button>
+            <input type="text" value={this.state.search_repo_key} name="search_repo_key" onChange={this.handleFilter} placeholder="Enter some keywords" />
+            <button onClick={this._clearResult} id="resultClearBtn" disabled={this.state.user_repo_result.length > 0 ? false : true}>Clear</button>
           </div>
 
           <div className="searchResult">
             <div className="resultPanel">
-              {this.handleResult()}
+              {
+                this._renderResult()
+              }
             </div>
           </div>
         </div>
@@ -128,4 +130,15 @@ class App extends Component {
     );
   }
 }
+
+function highlightText(text, keyword) {
+  let tokens = text.split(new RegExp(`(${keyword})`, 'gi'));
+  return <span className="resultItem"> {tokens.map((char, i) =>
+    <span key={i} className={char.toUpperCase() === keyword.toUpperCase() ? 'highlightedText' : null}>
+      {char}
+    </span>)
+  } </span>;
+}
+
 export default App;
+
